@@ -28,7 +28,8 @@ app.use(cors(
   }
 )); // Enable Cross-Origin Requests
 app.use(express.json()); // Parse JSON request bodies
-
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Handle preflight requests
 // Connect to Database
 connectDB();
 
