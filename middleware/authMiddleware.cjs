@@ -9,6 +9,12 @@ const authenticate = (req, res, next) => {
   }
 
   try {
+    if (req.method === 'OPTIONS') {
+      res.header('Access-Control-Allow-Origin', 'https://peach-tree-frontend-fw2xxocxx-ch-noman-ahmads-projects.vercel.app');
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      return res.status(200).json({});
+    }
     const decoded = verifyJWT(token); // Verify the token using Ed25519
     req.user = decoded; // Attach decoded payload to the request
     next(); // Proceed to the next middleware
