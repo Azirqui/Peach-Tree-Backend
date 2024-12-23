@@ -20,7 +20,13 @@ const notificationRoutes = require ('./routes/notificationRoutes.cjs')
 const app = express();
 
 // Middleware
-app.use(cors()); // Enable Cross-Origin Requests
+app.use(cors(
+  {
+    origin: ['https://peach-tree-frontend-fw2xxocxx-ch-noman-ahmads-projects.vercel.app/'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  }
+)); // Enable Cross-Origin Requests
 app.use(express.json()); // Parse JSON request bodies
 
 // Connect to Database
