@@ -53,7 +53,7 @@ app.use('/api/reports', reportRoutes); // Reporting
 app.use('/api/sales', salesRoutes); // Sales tracking
 app.use('/api', updateRoutes); // General update operations
 app.use('/api/bills', billRoutes); // Define the /api/bills route
-app.use('/suppliers', supplierRoutes); // Supplier management
+app.use('/api/suppliers', supplierRoutes); // Supplier management
 app.use('/api/notifications',notificationRoutes)
 // 404 Not Found Middleware
 app.use((req, res, next) => {
