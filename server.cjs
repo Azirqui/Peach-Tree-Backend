@@ -18,18 +18,17 @@ const supplierRoutes = require('./routes/supplierRoutes.cjs');
 const notificationRoutes = require ('./routes/notificationRoutes.cjs')
 // Initialize Express App
 const app = express();
-
+const corsOptions = {
+  origin: 'https://peach-tree-frontend.vercel.app/',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
 // Middleware
-app.use(cors(
-  {
-    origin: ['https://peach-tree-frontend-fw2xxocxx-ch-noman-ahmads-projects.vercel.app'],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  }
-)); // Enable Cross-Origin Requests
+ app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Preflight requests
+
 app.use(express.json()); // Parse JSON request bodies
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Handle preflight requests
 // Connect to Database
 connectDB();
 
