@@ -24,6 +24,7 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
+
 // Middleware
  app.use(cors(corsOptions));
 app.options('*', cors(corsOptions)); // Preflight requests
