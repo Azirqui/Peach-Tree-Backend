@@ -19,12 +19,22 @@ const notificationRoutes = require ('./routes/notificationRoutes.cjs')
 // Initialize Express App
 const app = express();
 const corsOptions = {
-  origin: 'https://peach-tree-frontend.vercel.app',
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      'https://peach-tree-frontend.vercel.app',
+      'https://peach-tree-frontend.vercel.app/' // Include trailing slash version
+    ];
+
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
-
 // Middleware
  app.use(cors(corsOptions));
 app.options('*', cors(corsOptions)); // Preflight requests
